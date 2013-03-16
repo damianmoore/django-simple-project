@@ -1,4 +1,4 @@
 django-simple-project
 =====================
 
-A very minimal Djano project used for testing installations
+A very minimal Django project used for testing installations
