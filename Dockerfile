@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 RUN apt-get update && \
-    apt-get install -y python-pip && \
+    apt-get install -y python-pip supervisor=3.0r1-1 gunicorn=19.0-1 nginx-light=1.6.2-5+deb8u1 && \
     apt-get clean && \
         rm -rf /var/lib/apt/lists/* \
                /tmp/* \
@@ -17,6 +17,10 @@ COPY static /srv/static
 COPY templates /srv/templates
 COPY project /srv/project
 
-CMD ["python", "/srv/manage.py", "runserver", "0.0.0.0:80"]
+COPY supervisord.conf /etc/supervisord.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+
+WORKDIR /srv
+CMD supervisord -c /etc/supervisord.conf
 
 EXPOSE 80
