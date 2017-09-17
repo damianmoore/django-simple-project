@@ -1,7 +1,7 @@
-FROM debian:jessie
+FROM debian:stretch
 
 RUN apt-get update && \
-    apt-get install -y python-pip supervisor=3.0r1-1 gunicorn=19.0-1 nginx-light=1.6.2-5+deb8u4 && \
+    apt-get install -y python-pip supervisor=3.3.1-1+deb9u1 gunicorn=19.6.0-10 nginx-light=1.10.3-1+deb9u1 && \
     apt-get clean && \
         rm -rf /var/lib/apt/lists/* \
                /tmp/* \
